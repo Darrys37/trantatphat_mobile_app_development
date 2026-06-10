@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="fontend">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>fontend</title>
+  <link rel="manifest" href="manifest.json">
+
+  <!-- ============================================ -->
+  <!-- ⭐ GOOGLE SIGN IN                            -->
+  <!-- ============================================ -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <meta name="google-signin-client_id" content="YOUR_GOOGLE_CLIENT_ID">
+  
+  <!-- ============================================ -->
+  <!-- ⭐ FACEBOOK SDK - KHỞI TẠO VỚI APP ID        -->
+  <!-- ============================================ -->
+  <script>
+    // ⭐ Hàm này được Facebook SDK gọi tự động sau khi SDK load xong
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: 'YOUR_FACEBOOK_APP_ID',  // 👈 THAY BẰNG FACEBOOK APP ID CỦA BẠN (chỉ số, không có chữ)
+        cookie: true,                    // Cho phép server truy cập cookie
+        xfbml: true,                     // Parse các plugin xã hội
+        version: 'v18.0'                 // Phiên bản Facebook Graph API
+      });
+      
+      // Tự động kiểm tra trạng thái đăng nhập khi SDK sẵn sàng
+      FB.AppEvents.logPageView();
+    };
+
+    // Load Facebook SDK bất đồng bộ
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!-- ============================================ -->
+
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
