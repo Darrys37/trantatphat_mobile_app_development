@@ -44,7 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
       scopes: ['email', 'profile'],
       serverClientId: kIsWeb 
           ? null 
-          : '366965497145-gc70qllj776gq37d7c62k2hdut1jb6sm.apps.googleusercontent.com',
+          : '402633860564-hhgbn1koj0hr0d3hpjdctdqegcof3nfn.apps.googleusercontent.com',
     );
   }
 
@@ -200,34 +200,24 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F9),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
-        scrolledUnderElevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black, size: 20),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.all(24.0),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 12),
-                const Text(
-                  'Sign up',
-                  style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 73),
+                const Text('Sign up', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 40),
                 CustomTextField(
                   label: 'Full name',
                   hint: 'John Doe',
@@ -237,7 +227,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 20),
                 CustomTextField(
                   label: 'Email',
                   hint: 'example@gmail.com',
@@ -249,7 +239,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 20),
                 CustomTextField(
                   label: 'Password',
                   hint: 'Enter your password',
@@ -265,55 +255,16 @@ class _SignupScreenState extends State<SignupScreen> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.zero,
-                      minimumSize: Size.zero,
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Already have an account? ',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_right_alt,
-                          color: Color(0xFFDB3022),
-                          size: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 32),
                 CustomButton(text: 'SIGN UP', onPressed: _signup, isLoading: _isLoading),
-                const SizedBox(height: 64),
-                const Center(
-                  child: Text(
-                    'Or sign up with social account',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
+                const Center(child: Text('Or sign up with', style: TextStyle(color: Colors.grey))),
+                const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SocialButton(
-                      icon: 'assets/images/gg.jpg',
+                      icon: 'assets/images/gg.jpg', // ⭐ FIX: bỏ dấu cách thừa
                       text: 'Google',
                       onPressed: _signupWithGoogle,
                     ),
@@ -325,7 +276,23 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 36),
+                const SizedBox(height: 24),
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      text: "Already have an account? ",
+                      style: const TextStyle(color: Colors.grey),
+                      children: [
+                        TextSpan(
+                          text: 'Login',
+                          style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

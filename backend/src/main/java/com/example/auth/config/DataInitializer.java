@@ -1,9 +1,10 @@
 package com.example.auth.config;
 
-import com.example.auth.auth.entity.Role;
-import com.example.auth.auth.repository.RoleRepository;
-import com.example.auth.shop.entity.Product;
-import com.example.auth.shop.repository.ProductRepository;
+import com.example.auth.entity.Role;
+import com.example.auth.repository.RoleRepository;
+import com.example.auth.entity.Product;
+import com.example.auth.entity.Gallery;
+import com.example.auth.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -39,135 +41,63 @@ public class DataInitializer {
         } else {
             log.info("ℹ️ ROLE_ADMIN đã tồn tại");
         }
-        
-        // ⭐ Tự động seed sản phẩm mẫu nếu chưa có
-        if (productRepository.findAll().stream().noneMatch(p -> p.getProduct_name().equalsIgnoreCase("Evening Dress"))) {
-            Product eveningDress = Product.builder()
-                    .slug("evening-dress")
-                    .product_name("Evening Dress")
-                    .sku("Dorothy Perkins")
-                    .sale_price(new BigDecimal("12.00"))
-                    .compare_price(new BigDecimal("15.00"))
-                    .buying_price(new BigDecimal("8.00"))
-                    .quantity(10)
-                    .short_description("Beautiful evening dress")
-                    .product_description("Perfect for formal events and dinner parties.")
-                    .product_type("simple")
-                    .published(true)
-                    .disable_out_of_stock(false)
-                    .isSale(true)
-                    .isNew(false)
-                    .build();
-            productRepository.save(eveningDress);
-            log.info("✅ Tự động tạo sản phẩm mẫu: Evening Dress");
-        }
-        
-        if (productRepository.findAll().stream().noneMatch(p -> p.getProduct_name().equalsIgnoreCase("Sport Dress"))) {
-            Product sportDress = Product.builder()
-                    .slug("sport-dress")
-                    .product_name("Sport Dress")
-                    .sku("Sitlly")
-                    .sale_price(new BigDecimal("19.00"))
-                    .compare_price(new BigDecimal("22.00"))
-                    .buying_price(new BigDecimal("10.00"))
-                    .quantity(10)
-                    .short_description("Sporty summer dress")
-                    .product_description("Perfect for active lifestyle.")
-                    .product_type("simple")
-                    .published(true)
-                    .disable_out_of_stock(false)
-                    .isSale(true)
-                    .isNew(false)
-                    .build();
-            productRepository.save(sportDress);
-            log.info("✅ Tự động tạo sản phẩm mẫu: Sport Dress");
-        }
 
-        if (productRepository.findAll().stream().noneMatch(p -> p.getProduct_name().equalsIgnoreCase("White Sport Dress"))) {
-            Product whiteSportDress = Product.builder()
-                    .slug("assets/images/main_2_sport_white.png")
-                    .product_name("White Sport Dress")
-                    .sku("Dorothy")
-                    .sale_price(new BigDecimal("14.00"))
-                    .compare_price(new BigDecimal("18.00"))
-                    .buying_price(new BigDecimal("9.00"))
-                    .quantity(15)
-                    .short_description("Elegant white sporty dress")
-                    .product_description("Breathable fabric for maximum comfort.")
-                    .product_type("simple")
-                    .published(true)
-                    .disable_out_of_stock(false)
-                    .isSale(true)
-                    .isNew(false)
-                    .build();
-            productRepository.save(whiteSportDress);
-            log.info("✅ Tự động tạo sản phẩm mẫu: White Sport Dress");
-        }
+        // Seeding mock products if empty
+        if (productRepository.count() == 0) {
+            log.info("🛒 Đang tạo sản phẩm mẫu trong Database...");
 
-        if (productRepository.findAll().stream().noneMatch(p -> p.getProduct_name().equalsIgnoreCase("Chiffon Summer Dress"))) {
-            Product chiffonDress = Product.builder()
-                    .slug("assets/images/main_page_1.png")
-                    .product_name("Chiffon Summer Dress")
-                    .sku("Lulus")
-                    .sale_price(new BigDecimal("24.00"))
-                    .compare_price(new BigDecimal("30.00"))
-                    .buying_price(new BigDecimal("12.00"))
-                    .quantity(8)
-                    .short_description("Light chiffon floral dress")
-                    .product_description("Flowy dress ideal for warm sunny days.")
-                    .product_type("simple")
-                    .published(true)
-                    .disable_out_of_stock(false)
-                    .isSale(true)
-                    .isNew(false)
-                    .build();
-            productRepository.save(chiffonDress);
-            log.info("✅ Tự động tạo sản phẩm mẫu: Chiffon Summer Dress");
-        }
+            saveProduct("Evening Dress", "evening-dress", "EVN-DRS-001", "12", "15", "Dorothy Perkins", 
+                "https://images.pexels.com/photos/1755428/pexels-photo-1755428.jpeg?auto=compress&w=300");
 
-        if (productRepository.findAll().stream().noneMatch(p -> p.getProduct_name().equalsIgnoreCase("Striped T-Shirt"))) {
-            Product stripedTee = Product.builder()
-                    .slug("assets/images/main_2_new_bottom_2.png")
-                    .product_name("Striped T-Shirt")
-                    .sku("Zara")
-                    .sale_price(new BigDecimal("15.00"))
-                    .compare_price(new BigDecimal("18.00"))
-                    .buying_price(new BigDecimal("7.00"))
-                    .quantity(20)
-                    .short_description("Fashionable striped t-shirt")
-                    .product_description("Red and white stripe pattern casual wear.")
-                    .product_type("simple")
-                    .published(true)
-                    .disable_out_of_stock(false)
-                    .isSale(false)
-                    .isNew(true)
-                    .build();
-            productRepository.save(stripedTee);
-            log.info("✅ Tự động tạo sản phẩm mẫu: Striped T-Shirt");
-        }
+            saveProduct("NewItem1", "new-item-1", "NEW-ITM-001", "10", null, "Mango", 
+                "https://images.pexels.com/photos/1300550/pexels-photo-1300550.jpeg?auto=compress&w=300");
 
-        if (productRepository.findAll().stream().noneMatch(p -> p.getProduct_name().equalsIgnoreCase("Classic White Tee"))) {
-            Product whiteTee = Product.builder()
-                    .slug("assets/images/main_2_new_bottom_3.png")
-                    .product_name("Classic White Tee")
-                    .sku("Mango")
-                    .sale_price(new BigDecimal("12.00"))
-                    .compare_price(new BigDecimal("15.00"))
-                    .buying_price(new BigDecimal("5.00"))
-                    .quantity(25)
-                    .short_description("Comfortable cotton white tee")
-                    .product_description("Breathable white tee for everyday basic look.")
-                    .product_type("simple")
-                    .published(true)
-                    .disable_out_of_stock(false)
-                    .isSale(false)
-                    .isNew(true)
-                    .build();
-            productRepository.save(whiteTee);
-            log.info("✅ Tự động tạo sản phẩm mẫu: Classic White Tee");
+            saveProduct("Pullover", "pullover", "PUL-OVR-001", "51", null, "Mango", 
+                "https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&w=400");
+
+            saveProduct("T-shirt", "t-shirt", "TSH-RTS-001", "12", null, "Lime-shop", 
+                "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg?auto=compress&w=400");
+
+            saveProduct("Shirt", "shirt", "SHR-TTS-001", "51", null, "Topshop", 
+                "https://images.pexels.com/photos/3622608/pexels-photo-3622608.jpeg?auto=compress&w=400");
+
+            saveProduct("T-Shirt SPANISH", "t-shirt-spanish", "TSH-SPA-001", "9", "13", "Mango", 
+                "https://images.pexels.com/photos/2220316/pexels-photo-2220316.jpeg?auto=compress&w=400");
+
+            saveProduct("Crop Top", "crop-top", "CRP-TOP-001", "22", null, "Zara", 
+                "https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&w=400");
+
+            log.info("✅ Đã tạo xong sản phẩm mẫu trong Database");
+        } else {
+            log.info("ℹ️ Sản phẩm mẫu đã tồn tại");
         }
         
         log.info("📊 Tổng số role trong DB: {}", roleRepository.count());
-        log.info("📊 Tổng số sản phẩm trong DB: {}", productRepository.count());
+    }
+
+    private void saveProduct(String name, String slug, String sku, String salePrice, String comparePrice, String type, String imageUrl) {
+        Product p = Product.builder()
+                .product_name(name)
+                .slug(slug)
+                .sku(sku)
+                .sale_price(new BigDecimal(salePrice))
+                .compare_price(comparePrice != null ? new BigDecimal(comparePrice) : null)
+                .quantity(15)
+                .short_description("Short description of " + name)
+                .product_description("This is a detailed product description of " + name + ".")
+                .product_type(type)
+                .published(true)
+                .disable_out_of_stock(false)
+                .build();
+
+        Gallery g = Gallery.builder()
+                .product(p)
+                .image(imageUrl)
+                .placeholder(imageUrl)
+                .is_thumbnail(true)
+                .build();
+
+        p.setGalleries(List.of(g));
+        productRepository.save(p);
     }
 }

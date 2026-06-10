@@ -6,9 +6,12 @@ import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/auth_callback_screen.dart';
+import 'services/product_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Bắt đầu fetch products ngay khi app khởi động
+  ProductService.instance.init();
   runApp(const MyApp());
 }
 

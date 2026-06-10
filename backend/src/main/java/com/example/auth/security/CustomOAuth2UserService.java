@@ -1,9 +1,9 @@
 package com.example.auth.security;
 
-import com.example.auth.auth.entity.Role;
-import com.example.auth.auth.entity.User;
-import com.example.auth.auth.repository.RoleRepository;
-import com.example.auth.auth.repository.UserRepository;
+import com.example.auth.entity.Role;
+import com.example.auth.entity.User;
+import com.example.auth.repository.RoleRepository;
+import com.example.auth.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;

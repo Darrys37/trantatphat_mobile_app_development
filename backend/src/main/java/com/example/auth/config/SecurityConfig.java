@@ -33,16 +33,15 @@ import java.util.List;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    
+
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final OAuth2SuccessHandler oAuth2SuccessHandler;
     private final UserDetailsService userDetailsService;
-    
-    // ⭐ Đọc cấu hình CORS từ application.yml (Chuẩn Enterprise)
+
     @Value("${cors.allowed-origins}")
     private String allowedOrigins;
-    
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -56,27 +55,46 @@ public class SecurityConfig {
                 .requestMatchers("/public/**").permitAll()
                 .requestMatchers("/oauth2/**").permitAll()
                 .requestMatchers("/login/oauth2/**").permitAll()
-                .requestMatchers("/shop/home/**").permitAll()
-                .requestMatchers("/shop/products/**").permitAll()
-                .requestMatchers("/shop/categories/**").permitAll()
+
+                // ✅ GET public — không cần auth
+                .requestMatchers(
+                    org.springframework.http.HttpMethod.GET,
+                    "/shop/home/**",
+                    "/shop/products",
+                    "/shop/products/*",
+                    "/shop/products/slug/*",
+                    "/shop/products/*/related",
+                    "/shop/categories",
+                    "/shop/categories/*",
+                    "/shop/categories/*/children",
+                    "/shop/reviews/product/*"
+                ).permitAll()
+
+                // ✅ PUT /shop/home/** — cho phép đổi layout không cần auth
+                .requestMatchers(
+                    org.springframework.http.HttpMethod.PUT,
+                    "/shop/home/**"
+                ).permitAll()
+
+                // ✅ Cart + Favorites — cần đăng nhập
+                .requestMatchers("/shop/cart/**").authenticated()
+                .requestMatchers("/shop/favorites/**").authenticated()
+
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
             )
-            // ⭐ FIX LỖI OAUTH2 WEB: Đổi STATELESS thành IF_REQUIRED
-            // OAuth2 Redirect Flow bắt buộc phải dùng Session để lưu state tạm thời.
-            // API của bạn vẫn bảo mật bằng JWT (do JwtFilter xử lý) nên không lo mất tính stateless của API.
             .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) 
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             )
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
             .oauth2Login(oauth2 -> oauth2
                 .successHandler(oAuth2SuccessHandler)
             );
-        
+
         return http.build();
     }
-    
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -84,30 +102,26 @@ public class SecurityConfig {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-    
+
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-    
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        
-        // ⭐ Sử dụng biến từ application.yml, tự động cắt chuỗi theo dấu phẩy
         List<String> origins = Arrays.asList(allowedOrigins.split(","));
         configuration.setAllowedOrigins(origins);
-        
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setAllowCredentials(true); 
-        configuration.setMaxAge(3600L); 
-        
+        configuration.setAllowCredentials(true);
+        configuration.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;

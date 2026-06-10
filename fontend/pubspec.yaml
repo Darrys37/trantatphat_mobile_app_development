@@ -11,6 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  image_picker: ^1.0.7
+
   # Giao diện & Icons
   cupertino_icons: ^1.0.8
 
@@ -19,16 +21,16 @@ dependencies:
 
   # Lưu trữ Token (JWT) và thông tin user
   shared_preferences: ^2.2.3
-  flutter_secure_storage: ^9.2.2 # Bảo mật cao hơn cho Refresh Token
+  flutter_secure_storage: ^9.2.2
 
   # Giải mã JWT để lấy thông tin user từ token
   jwt_decoder: ^2.0.1
 
-  # Đăng nhập bằng Google & Facebook (Native App)
+  # Đăng nhập bằng Google & Facebook
   google_sign_in: ^6.2.1
   flutter_facebook_auth: ^7.0.0
 
-  # ⭐ THÊM MỚI: Mở URL trên cả Web và Mobile (Fix lỗi dart:js trên Android/iOS)
+  # Mở URL trên cả Web và Mobile
   url_launcher: ^6.2.5
 
 dev_dependencies:
@@ -39,6 +41,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # Khai báo thư mục chứa ảnh (Logo Google, Facebook, v.v.)
   assets:
     - assets/images/
