@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/models/product.dart';
-import 'package:font_end/services/product_service.dart';
-import 'package:font_end/services/favorite_service.dart';
-import 'package:font_end/services/cart_service.dart';
-import 'package:font_end/rating_review_screen.dart';
+import 'package:trantatphat/models/product.dart';
+import 'package:trantatphat/services/product_service.dart';
+import 'package:trantatphat/services/favorite_service.dart';
+import 'package:trantatphat/services/cart_service.dart';
+import 'package:trantatphat/rating_review_screen.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Product product;

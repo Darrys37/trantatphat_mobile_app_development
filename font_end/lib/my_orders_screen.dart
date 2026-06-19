@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/models/order.dart';
-import 'package:font_end/services/checkout_service.dart';
-import 'package:font_end/order_details_screen.dart';
+import 'package:trantatphat/models/order.dart';
+import 'package:trantatphat/services/checkout_service.dart';
+import 'package:trantatphat/order_details_screen.dart';
 
 class MyOrdersScreen extends StatefulWidget {
   const MyOrdersScreen({super.key});

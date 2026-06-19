@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/services/cart_service.dart';
-import 'package:font_end/services/checkout_service.dart';
-import 'package:font_end/models/delivery_method.dart';
-import 'package:font_end/payment_methods_screen.dart';
-import 'package:font_end/shipping_addresses_screen.dart';
-import 'package:font_end/success_screen.dart';
+import 'package:trantatphat/services/cart_service.dart';
+import 'package:trantatphat/services/checkout_service.dart';
+import 'package:trantatphat/models/delivery_method.dart';
+import 'package:trantatphat/payment_methods_screen.dart';
+import 'package:trantatphat/shipping_addresses_screen.dart';
+import 'package:trantatphat/success_screen.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});

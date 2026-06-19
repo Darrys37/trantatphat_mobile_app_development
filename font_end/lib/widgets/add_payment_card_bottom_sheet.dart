@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/models/payment_card.dart';
-import 'package:font_end/services/checkout_service.dart';
+import 'package:trantatphat/models/payment_card.dart';
+import 'package:trantatphat/services/checkout_service.dart';
 
 class AddPaymentCardBottomSheet extends StatefulWidget {
   const AddPaymentCardBottomSheet({super.key});

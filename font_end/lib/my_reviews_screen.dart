@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:font_end/models/review.dart';
-import 'package:font_end/services/product_service.dart';
+import 'package:trantatphat/models/review.dart';
+import 'package:trantatphat/services/product_service.dart';
 
 class MyReviewsScreen extends StatefulWidget {
   const MyReviewsScreen({super.key});

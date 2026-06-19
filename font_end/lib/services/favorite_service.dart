@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:font_end/models/product.dart';
-import 'package:font_end/auth_service.dart';
+import 'package:trantatphat/models/product.dart';
+import 'package:trantatphat/auth_service.dart';
 
 class FavoriteService {
   static const String baseUrl = "http://192.168.1.201:8080/api/favorites";

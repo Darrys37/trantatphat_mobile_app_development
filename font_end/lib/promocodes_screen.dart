@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/services/cart_service.dart';
-import 'package:font_end/models/coupon.dart';
+import 'package:trantatphat/services/cart_service.dart';
+import 'package:trantatphat/models/coupon.dart';
 import 'package:flutter/services.dart';
 
 class PromocodesScreen extends StatefulWidget {

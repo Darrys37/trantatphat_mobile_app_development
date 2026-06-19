@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/main_screen.dart';
+import 'package:trantatphat/main_screen.dart';
 
 class SuccessScreen extends StatelessWidget {
   const SuccessScreen({super.key});

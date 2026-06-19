@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/models/review.dart';
-import 'package:font_end/services/product_service.dart';
-import 'package:font_end/write_review_bottom_sheet.dart';
+import 'package:trantatphat/models/review.dart';
+import 'package:trantatphat/services/product_service.dart';
+import 'package:trantatphat/write_review_bottom_sheet.dart';
 import 'dart:convert';
 
 class RatingReviewScreen extends StatefulWidget {

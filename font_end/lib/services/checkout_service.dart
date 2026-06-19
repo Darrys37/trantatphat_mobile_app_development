@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:font_end/auth_service.dart';
-import 'package:font_end/models/user_address.dart';
-import 'package:font_end/models/payment_card.dart';
-import 'package:font_end/models/delivery_method.dart';
+import 'package:trantatphat/auth_service.dart';
+import 'package:trantatphat/models/user_address.dart';
+import 'package:trantatphat/models/payment_card.dart';
+import 'package:trantatphat/models/delivery_method.dart';
 
 class CheckoutService extends ChangeNotifier {
   static const String baseUrl = "http://192.168.1.201:8080/api/checkout";

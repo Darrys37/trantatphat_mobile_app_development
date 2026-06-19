@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:font_end/models/product.dart';
-import 'package:font_end/models/review.dart';
-import 'package:font_end/auth_service.dart';
+import 'package:trantatphat/models/product.dart';
+import 'package:trantatphat/models/review.dart';
+import 'package:trantatphat/auth_service.dart';
 
 class ProductService {
   // Dùng chung IP với AuthService để gọi xuống Spring Boot

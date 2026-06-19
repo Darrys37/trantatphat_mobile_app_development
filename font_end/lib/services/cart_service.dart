@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:font_end/auth_service.dart';
-import 'package:font_end/models/cart_item.dart';
-import 'package:font_end/models/coupon.dart';
+import 'package:trantatphat/auth_service.dart';
+import 'package:trantatphat/models/cart_item.dart';
+import 'package:trantatphat/models/coupon.dart';
 
 class CartService extends ChangeNotifier {
   static const String baseUrl = "http://192.168.1.201:8080/api/cart";

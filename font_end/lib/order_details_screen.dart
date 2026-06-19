@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/models/order_details.dart';
-import 'package:font_end/services/checkout_service.dart';
-import 'package:font_end/services/cart_service.dart';
-import 'package:font_end/write_review_bottom_sheet.dart';
+import 'package:trantatphat/models/order_details.dart';
+import 'package:trantatphat/services/checkout_service.dart';
+import 'package:trantatphat/services/cart_service.dart';
+import 'package:trantatphat/write_review_bottom_sheet.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
   final String orderId;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/services/cart_service.dart';
-import 'package:font_end/widgets/promo_code_bottom_sheet.dart';
-import 'package:font_end/checkout_screen.dart';
+import 'package:trantatphat/services/cart_service.dart';
+import 'package:trantatphat/widgets/promo_code_bottom_sheet.dart';
+import 'package:trantatphat/checkout_screen.dart';
 
 class BagScreen extends StatefulWidget {
   const BagScreen({super.key});

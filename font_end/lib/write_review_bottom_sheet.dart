@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:font_end/services/product_service.dart';
+import 'package:trantatphat/services/product_service.dart';
 
 class WriteReviewBottomSheet extends StatefulWidget {
   final String productId;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_end/models/product.dart';
-import 'package:font_end/services/favorite_service.dart';
-import 'package:font_end/services/cart_service.dart';
-import 'package:font_end/product_detail_screen.dart';
-import 'package:font_end/main_screen.dart';
-import 'package:font_end/filters_screen.dart';
+import 'package:trantatphat/models/product.dart';
+import 'package:trantatphat/services/favorite_service.dart';
+import 'package:trantatphat/services/cart_service.dart';
+import 'package:trantatphat/product_detail_screen.dart';
+import 'package:trantatphat/main_screen.dart';
+import 'package:trantatphat/filters_screen.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
